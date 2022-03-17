@@ -66,4 +66,8 @@ Generate grpc stubs as well as HTTP API stubs
 
 The added code is marked with `ADD` comments in helloworld/helloworld.proto and server/main.go
 
+## Swagger
+
+The generated helloworld/helloworld.swagger.json can be pasted into https://editor.swagger.io/ and code can be generated for
+various languages for client and server side.
 
