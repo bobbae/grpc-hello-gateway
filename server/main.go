@@ -13,6 +13,7 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc/credentials/insecure"
 	"net/http"
+	"google.golang.org/grpc/reflection"
 )
 
 type server struct {
@@ -38,6 +39,8 @@ func main() {
 	s := grpc.NewServer()
 	// Attach the Greeter service to the server
 	helloworldpb.RegisterGreeterServer(s, &server{})
+	// Optional reflection service register for use with grpcurl or grpc_cli
+	reflection.Register(s)
 	// Serve gRPC Server
 	log.Println("Serving gRPC on 0.0.0.0:8080")
 	//log.Fatal(s.Serve(lis))
