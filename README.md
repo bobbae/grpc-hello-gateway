@@ -14,9 +14,9 @@ apt install -y protobuf-compiler
 ## Installing protoc-gen-go and protoc-gen-go-grpc
 
 
-go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
-go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
-
+go get google.golang.org/protobuf/cmd/protoc-gen-go@v1.27
+go get google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 
 
 export PATH="$PATH:$(go env GOPATH)/bin"
