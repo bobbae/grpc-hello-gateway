@@ -51,3 +51,11 @@ httpannotations:
 	mkdir -p google/api
 	curl https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/annotations.proto > google/api/annotations.proto
 	curl https://raw.githubusercontent.com/googleapis/googleapis/master/google/api/http.proto > google/api/http.proto
+
+dockerbuild:
+	docker build -t hello-gateway .
+
+dockerrun:
+	docker run -p 8080:8080 -p 8090:8090 hello-gateway 
+
+
