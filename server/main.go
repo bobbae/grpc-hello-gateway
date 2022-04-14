@@ -65,8 +65,21 @@ func main() {
 	}
 	gwServer := &http.Server{
 		Addr:    ":8090",
-		Handler: gwmux,
+		Handler: cors(gwmux),
 	}
 	log.Println("Serving gRPC-Gateway on http://0.0.0.0:8090")
 	log.Fatalln(gwServer.ListenAndServe())
+}
+
+func cors(h http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE")
+		w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, x-grpc-web, x-user-agent, X-CSRF-Token, Authorization, ResponseType")
+        
+        if r.Method == "OPTIONS" {
+            return
+        } 
+        h.ServeHTTP(w, r)
+    })
 }
