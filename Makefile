@@ -1,5 +1,9 @@
+installgrpc: installprotoc installprotogen installgrpcgateway installgrpcweb installgoogleapianno
+	# for grpc cli
+	#brew install grpc
+
 installprotoc:
-	apt install -y protobuf-compiler
+	sudo apt install -y protobuf-compiler
 
 installprotogen:
 	go get google.golang.org/protobuf/cmd/protoc-gen-go@v1.27
@@ -7,10 +11,10 @@ installprotogen:
 	go get github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
 
 installgrpcgateway:
-	go install  github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
-	    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
-	    google.golang.org/protobuf/cmd/protoc-gen-go \
-	    google.golang.org/grpc/cmd/protoc-gen-go-grpc
+	go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway 
+	go get github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 
+	go get google.golang.org/protobuf/cmd/protoc-gen-go
+	go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
 
 installgrpcweb:
 	wget https://github.com/grpc/grpc-web/releases/download/1.3.1/protoc-gen-grpc-web-1.3.1-darwin-x86_64
@@ -54,9 +58,6 @@ installgrpcurl:
 	go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 	# brew install grpcurl
 
-installgrpc:
-	# for grpc cli
-	brew install grpc
 
 rungrpcurlclient:
 	sh -x ./grpcurl.sh
